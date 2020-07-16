@@ -1,0 +1,55 @@
+---
+- name: Set IPv4 forward to 1
+  tags: firewall
+  sysctl:
+    name: net.ipv4.conf.all.forwarding
+    value: "1"
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: Set IPv6 forward to 1
+  tags: firewall
+  sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: "1"
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: Install nftables package
+  tags: firewall
+  apt:
+    name: "{{ packages }}"
+  vars:
+   packages:
+     - nftables
+
+- name: Deploy nftables firewall rules
+  tags: firewall
+  template:
+    src: "{{ item }}"
+    dest: "/etc/{{ item }}"
+    owner: root
+    group: root
+    mode: "u=rwx,g=rx,o=rx"
+  notify: restart nftables
+  with_items:
+   - nftables.conf
+
+- name: Enable nftables
+  tags: firewall
+  systemd:
+    name: nftables
+    enabled: yes
+     
+- name: Deploy secondary interface configs on the firewall
+  tags: firewall
+  template:
+    src: network/interfaces.d/interfaceTemplate.cfg
+    dest: "/etc/network/interfaces.d/{{ item.name }}.cfg"
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+  loop: "{{ secondaryInterfaces }}"
+
