@@ -1,0 +1,16 @@
+## RFC
+define ip4PrivateNetworks = {
+		10.0.0.0/8,
+		100.64.0.0/10,
+		172.16.0.0/12,
+		192.168.0.0/16
+		}
+define ip4LinkLocalNetworks = {
+		 169.254.0.0/16
+		 }
+define ip6PrivateNetworks = {
+		fd00::/8,
+		}
+define ip6LinkLocalNetworks = {
+		fe80::/10,
+		}

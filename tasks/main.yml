@@ -25,8 +25,17 @@
    packages:
      - nftables
 
+- name: Create nftables config directory
+  tags: firewall, test
+  file:
+    dest: /etc/nftables.conf.d
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+
 - name: Deploy nftables firewall rules
-  tags: firewall
+  tags: firewall, test
   template:
     src: "{{ item }}"
     dest: "/etc/{{ item }}"
@@ -36,6 +45,10 @@
   notify: restart nftables
   with_items:
    - nftables.conf
+   - nftables.conf.d/10rfcDef.nft
+   - nftables.conf.d/12siteDef.nft
+   - nftables.conf.d/14subNetDef.nft
+   - nftables.conf.d/30rules.nft
 
 - name: Enable nftables
   tags: firewall
@@ -43,13 +56,13 @@
     name: nftables
     enabled: yes
      
-- name: Deploy secondary interface configs on the firewall
-  tags: firewall
-  template:
-    src: network/interfaces.d/interfaceTemplate.cfg
-    dest: "/etc/network/interfaces.d/{{ item.name }}.cfg"
-    owner: root
-    group: root
-    mode: "u=rw,g=r,o=r"
-  loop: "{{ secondaryInterfaces }}"
-
+#- name: Deploy secondary interface configs on the firewall
+#  tags: firewall
+#  template:
+#    src: network/interfaces.d/interfaceTemplate.cfg
+#    dest: "/etc/network/interfaces.d/{{ item.name }}.cfg"
+#    owner: root
+#    group: root
+#    mode: "u=rw,g=r,o=r"
+#  loop: "{{ secondaryInterfaces }}"
+    

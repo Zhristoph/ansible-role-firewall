@@ -1,0 +1,19 @@
+## Site
+define ip4SiteNetworks = {
+	{% for networks in firewallIP4Networks %}{{ networks }},{% endfor %}
+	}
+define ip4SiteRouter = {
+	{% for networks in firewallIP4SiteRouter %}{{ networks }},{% endfor %}
+        }
+define ip4DNS = {
+	{% for networks in firewallIP4DNS %}{{ networks }},{% endfor %}
+        }
+define ip6SiteNetworks = {
+	{% for networks in firewallIP6SiteNetworks %}{{ networks }},{% endfor %}
+        }
+define ip6SiteRouter = {
+	{% for networks in firewallIP6SiteRouter %}{{ networks }},{% endfor %}
+        }
+define ip6DNS = {
+	{% for networks in firewallIP6DNS %}{{ networks }},{% endfor %}
+	}

@@ -1,1 +1,20 @@
 rootMailAddress: root@localhost
+secondaryInterfaces:
+        - { name: "ethBROKEN", address: "10.0.0.1" }
+firewallIP4Networks: 
+ - 127.0.0.1/8
+
+firewallIP4SiteRouter:    
+ - 127.0.0.1
+ 
+firewallIP4DNS:    
+ - 127.0.0.1
+ 
+firewallIP6SiteNetworks:
+ - ::1/8
+
+firewallIP6SiteRouter:     
+ - ::1
+                 
+firewallIP6DNS:
+ - ::1
