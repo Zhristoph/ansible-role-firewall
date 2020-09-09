@@ -18,3 +18,7 @@ firewallIP6SiteRouter:
                  
 firewallIP6DNS:
  - ::1
+
+firewallSubNetDef:
+
+firewallRules:
