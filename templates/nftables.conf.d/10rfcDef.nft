@@ -14,3 +14,4 @@ define ip6PrivateNetworks = {
 define ip6LinkLocalNetworks = {
 		fe80::/10,
 		}
+define privilegedPorts = 0-1023
