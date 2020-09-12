@@ -13,9 +13,9 @@ table ip nat {
 
         chain postrouting {
                 type nat hook postrouting priority srcnat; policy accept;
-{% for networks in dhcpInterfaces.items() %}
-{% for nats in networks.1.nat %}
-                ip saddr {{ nats }} counter masquerade
+{% for networks in dhcpInterfaces %}
+{% for nats in networks.nat %}
+                ip saddr {{ nats }} counter masquerade # NAT for {{ networks.networkName }}
 {% endfor %}
 {% endfor %}
         }
