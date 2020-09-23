@@ -34,6 +34,32 @@
     mode: 0755
     state: directory
 
+- name: Basic firewall config files
+  tags: firewall
+  set_fact:
+    firewallConfig:
+     - nftables.conf
+     - nftables.conf.d/10rfcDef.nft
+     - nftables.conf.d/12siteDef.nft
+     - nftables.conf.d/16localDef.nft
+     - nftables.conf.d/30rules.nft
+    firewallNATConfig:
+     - nftables.conf.d/20nat.nft
+
+- name: Is NAT required?
+  tags: firewall
+  set_fact:
+    firewallNAT: True
+  when: item.nat != []
+  with_items:
+   - "{{ dhcpInterfaces }}"
+
+- name: Add NAT to firewall config 
+  tags: firewall
+  set_fact:
+    firewallConfig: "{{ firewallConfig + firewallNATConfig }}"
+  when: firewallNAT == True
+
 - name: Deploy nftables firewall rules
   tags: firewall
   template:
@@ -44,12 +70,7 @@
     mode: "u=rwx,g=rx,o=rx"
   notify: restart nftables
   with_items:
-   - nftables.conf
-   - nftables.conf.d/10rfcDef.nft
-   - nftables.conf.d/12siteDef.nft
-   - nftables.conf.d/16localDef.nft
-   - nftables.conf.d/20nat.nft
-   - nftables.conf.d/30rules.nft
+   - "{{ firewallConfig }}"
 
 - name: Enable nftables
   tags: firewall

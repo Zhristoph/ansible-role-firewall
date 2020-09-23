@@ -21,6 +21,8 @@ firewallIP6DNS:
 
 firewallLocalDef:
 
+firewallNAT: False
+
 firewallRules:
 
 dhcpInterfaces: []
