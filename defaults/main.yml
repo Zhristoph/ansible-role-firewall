@@ -1,6 +1,5 @@
 rootMailAddress: root@localhost
-secondaryInterfaces:
-        - { name: "ethBROKEN", address: "10.0.0.1" }
+
 firewallIP4Networks: 
  - 127.0.0.1/8
 

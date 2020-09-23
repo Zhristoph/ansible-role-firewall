@@ -78,13 +78,3 @@
     name: nftables
     enabled: yes
      
-#- name: Deploy secondary interface configs on the firewall
-#  tags: firewall
-#  template:
-#    src: network/interfaces.d/interfaceTemplate.cfg
-#    dest: "/etc/network/interfaces.d/{{ item.name }}.cfg"
-#    owner: root
-#    group: root
-#    mode: "u=rw,g=r,o=r"
-#  loop: "{{ secondaryInterfaces }}"
-    
