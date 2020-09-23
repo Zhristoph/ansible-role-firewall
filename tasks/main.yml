@@ -40,11 +40,11 @@
     firewallConfig:
      - nftables.conf
      - nftables.conf.d/10rfcDef.nft
-     - nftables.conf.d/12siteDef.nft
-     - nftables.conf.d/16localDef.nft
-     - nftables.conf.d/30rules.nft
+     - nftables.conf.d/20siteDef.nft
+     - nftables.conf.d/30localDef.nft
+     - nftables.conf.d/50rules.nft
     firewallNATConfig:
-     - nftables.conf.d/20nat.nft
+     - nftables.conf.d/40nat.nft
 
 - name: Is NAT required?
   tags: firewall
