@@ -47,7 +47,7 @@
    - nftables.conf
    - nftables.conf.d/10rfcDef.nft
    - nftables.conf.d/12siteDef.nft
-   - nftables.conf.d/14subNetDef.nft
+   - nftables.conf.d/16localDef.nft
    - nftables.conf.d/20nat.nft
    - nftables.conf.d/30rules.nft
 
