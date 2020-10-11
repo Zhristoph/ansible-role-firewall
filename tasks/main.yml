@@ -52,7 +52,7 @@
     firewallNAT: True
   when: item.nat != []
   with_items:
-   - "{{ dhcpInterfaces }}"
+   - "{{ networks }}"
 
 - name: Add NAT to firewall config 
   tags: firewall
