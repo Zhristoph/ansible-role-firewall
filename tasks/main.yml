@@ -50,7 +50,7 @@
   tags: firewall
   set_fact:
     firewallNAT: True
-  when: item.nat != []
+  when: item.nat is defined and item.nat != []
   with_items:
    - "{{ networks }}"
 
