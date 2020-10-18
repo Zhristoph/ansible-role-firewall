@@ -39,3 +39,4 @@ define icmp6Limited = {
     {{ type }},
   {% endfor %}
   }
+{{ firewallSiteDefExtended }}
