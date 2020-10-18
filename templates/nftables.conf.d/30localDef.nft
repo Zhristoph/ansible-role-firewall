@@ -1,1 +1,21 @@
+## Local
+define ip4LocalNetworks = {
+  {% for ntwrks in networks %}
+  {%   if ntwrks.network4 is defined and ntwrks.network4 != "" %}
+    {{ ntwrks.network4 }}/{{ ntwrks.netmask4 }},
+  {%   endif %}
+  {% endfor %}
+  }
+define ip6LocalNetworks = {
+  {% for ntwrks in networks %}
+  {%   if ntwrks.network6 is defined and ntwrks.network6 != "" %}
+    {{ ntwrks.network6 }}/{{ ntwrks.netmask6 }},
+  {%   endif %}
+  {% endfor %}
+  }
+define localInterfaces = {
+  {% for ntwrks in networks %}
+    "{{ ntwrks.networkName }}",
+  {% endfor %}
+  }
 {{ firewallLocalDef }}
