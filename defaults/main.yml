@@ -22,7 +22,11 @@ firewallLocalDef:
 
 firewallNAT: False
 
-firewallRules:
+firewallDNATRules:
+
+firewallGroupRules:
+
+firewallHostRules:
 
 networks: []
 
