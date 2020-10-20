@@ -54,7 +54,7 @@
   with_items:
    - "{{ networks }}"
 
-- name: Add NAT to firewall config 
+- name: Add NAT to firewall config
   tags: firewall
   set_fact:
     firewallConfig: "{{ firewallConfig + firewallNATConfig }}"
