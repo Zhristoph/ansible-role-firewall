@@ -1,4 +1,22 @@
 ---
+- name: Are there local IPv4 networks?
+  tags: firewall
+  set_fact:
+    localNetwork4: True
+  loop: "{{ networks }}"
+  when: item.network4 is defined and item.network4 != ""
+
+- name: Are there local IPv6 networks?
+  tags: firewall
+  set_fact:
+    localNetwork6: True
+  loop: "{{ networks }}"
+  when: item.network6 is defined and item.network6 != ""
+
+- name: debug
+  debug:
+    msg: Foo "{{ localNetwork6 }}"
+
 - name: Set IPv4 forward to 1
   tags: firewall
   sysctl:
@@ -7,6 +25,7 @@
     sysctl_set: yes
     state: present
     reload: yes
+  when: localNetwork4
 
 - name: Set IPv6 forward to 1
   tags: firewall
@@ -16,6 +35,7 @@
     sysctl_set: yes
     state: present
     reload: yes
+  when: localNetwork6
 
 - name: Install nftables package
   tags: firewall

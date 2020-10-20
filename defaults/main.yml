@@ -1,5 +1,9 @@
 rootMailAddress: root@localhost
 
+localNetwork4: False
+
+localNetwork6: False
+
 firewallIP4Networks: 
  - 127.0.0.1/8
 
