@@ -14,10 +14,12 @@ table ip nat {
 
         chain postrouting {
                 type nat hook postrouting priority srcnat; policy accept;
-{% for ntwrks in networks %}
-{% for nats in ntwrks.nat %}
-                ip saddr {{ nats }} counter masquerade # NAT for {{ ntwrks.networkName }}
-{% endfor %}
+{% for ntwrk in networks %}
+{%   if ntwrk.nat is defined and ntwrk.nat != "" %}
+{%     for nt in ntwrk.nat %}
+                ip saddr {{ nt }} counter masquerade # NAT for {{ ntwrk.networkName }}
+{%     endfor %}
+{%   endif %}
 {% endfor %}
         }
 }
