@@ -17,9 +17,11 @@ define ip6LocalNetworks = {
 {%  endfor %}
   }
 {% endif %}
+{% if networks %}
 define localInterfaces = {
 {% for ntwrks in networks %}
     "{{ ntwrks.networkName }}",
 {% endfor %}
   }
+{% endif %}
 {{ firewallLocalDef }}
