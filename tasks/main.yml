@@ -13,10 +13,6 @@
   loop: "{{ networks }}"
   when: item.network6 is defined and item.network6 != ""
 
-- name: debug
-  debug:
-    msg: Foo "{{ localNetwork6 }}"
-
 - name: Set IPv4 forward to 1
   tags: firewall
   sysctl:
